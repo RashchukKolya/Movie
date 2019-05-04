@@ -1,0 +1,15 @@
+.card {
+  width: 23%;
+  border: 2px solid grey;
+  margin-bottom: 1%;
+}
+
+.img {
+  width: 60%;
+  display: block;
+  margin: auto;
+}
+
+.bold {
+  font-weight: bold;
+}
