@@ -9,7 +9,8 @@ import style from "./App.module.css";
 export class App extends Component {
   state = {
     num: 1,
-    input: ""
+    input: "",
+    searchLoading: false
   };
 
   componentDidMount = () => {
@@ -18,20 +19,28 @@ export class App extends Component {
 
   inputFunc = e => {
     this.setState({
-      input: e.target.value
+      input: e.target.value,
+      searchLoading: false
     });
   };
+  
   clickFunc = async e => {
     let target = e.target.text;
     await this.setState({
       num: +target
     });
-    this.props.fetchFilm(this.state.num);
-    // this.props.searchFilm(this.state.input, this.state.num);
+    if (this.state.input) {
+      this.props.searchFilm(this.state.input, this.state.num);
+    } else {
+      this.props.fetchFilm(this.state.num);
+    }
   };
 
   searchFunc = e => {
     e.preventDefault();
+    this.setState({
+      searchLoading: true
+    })
     this.props.searchFilm(this.state.input, this.state.num);
   };
   render() {
@@ -43,12 +52,12 @@ export class App extends Component {
           input={this.state.input}
           inputFunc={this.inputFunc}
         />
-        <Main data={this.props.data.results} />
+        <Main data={this.state.searchLoading ? this.props.search.results : this.props.data.results} />
         <div className={style.pagination}>
           <Pagination
             onPageChange={this.clickFunc}
             defaultActivePage={1}
-            totalPages={Math.ceil(this.props.data.total_results / 20)}
+            totalPages={Math.ceil(this.state.searchLoading ? this.props.search.total_results / 20 : this.props.data.total_results / 20)}
             // totalPages={this.props.data.total_pages}
             // totalPages={359}
             ellipsisItem={null}
