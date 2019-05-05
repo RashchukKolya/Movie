@@ -5,7 +5,7 @@ export const getFilmAction = data => ({
   payload: data
 });
 
-export const fetchData = (num) => dispatch => {
+export const fetchData = num => dispatch => {
   return (
     getListMovie(num)
       .then(res => dispatch(getFilmAction(res.data)))
@@ -16,14 +16,24 @@ export const fetchData = (num) => dispatch => {
 
 export const searchFilmAction = data => ({
   type: "SEARCH_FILM_ACTION",
-  payload:data
+  payload: data
 });
 
-export const searchData = (input, num) => dispatch =>{
+export const searchData = (input, num) => dispatch => {
   return (
     getSearchMovie(input, num)
       .then(res => dispatch(searchFilmAction(res.data)))
       // .then(res => console.log(res.data))
       .catch(error => console.error(error))
-  )
-}
+  );
+};
+
+export const sortByYearUp = data => ({
+  type: "SORT_BY_YEAR_UP",
+  payload: data
+});
+
+export const sortByYearDown = data => ({
+  type: "SORT_BY_YEAR_DOWN",
+  payload: data
+});
