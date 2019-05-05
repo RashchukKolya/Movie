@@ -9,30 +9,40 @@ import style from "./App.module.css";
 export class App extends Component {
   state = {
     num: 1,
-    input: 'batman'
+    input: ""
   };
 
   componentDidMount = () => {
     this.props.fetchFilm(this.state.num);
   };
 
+  inputFunc = e => {
+    this.setState({
+      input: e.target.value
+    });
+  };
   clickFunc = async e => {
     let target = e.target.text;
     await this.setState({
       num: +target
     });
     this.props.fetchFilm(this.state.num);
+    // this.props.searchFilm(this.state.input, this.state.num);
   };
 
-  searchFunc = (e) => {
-    e.preventDefault()
-    this.props.searchFilm(this.state.input, this.state.num)    
-  }
+  searchFunc = e => {
+    e.preventDefault();
+    this.props.searchFilm(this.state.input, this.state.num);
+  };
   render() {
     console.log(this.props.data);
     return (
       <React.Fragment>
-        <Header searchFunc={this.searchFunc}/>
+        <Header
+          searchFunc={this.searchFunc}
+          input={this.state.input}
+          inputFunc={this.inputFunc}
+        />
         <Main data={this.props.data.results} />
         <div className={style.pagination}>
           <Pagination
