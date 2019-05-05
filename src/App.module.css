@@ -1,5 +1,6 @@
 .pagination {
-  margin: 0 calc((100% - 325px) / 2) 1%;
+  margin-bottom: 1%;
+  display: inline-block;
 }
 
 .footer {

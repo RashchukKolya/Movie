@@ -52,14 +52,12 @@ export class App extends Component {
           input={this.state.input}
           inputFunc={this.inputFunc}
         />
-        <Main data={this.state.searchLoading ? this.props.search.results : this.props.data.results} />
+        <Main data={this.state.searchLoading ? this.props.search.info : this.props.data.info} />
         <div className={style.pagination}>
           <Pagination
             onPageChange={this.clickFunc}
             defaultActivePage={1}
-            totalPages={Math.ceil(this.state.searchLoading ? this.props.search.total_results / 20 : this.props.data.total_results / 20)}
-            // totalPages={this.props.data.total_pages}
-            // totalPages={359}
+            totalPages={this.state.searchLoading ? +this.props.search.pages: +this.props.data.pages}
             ellipsisItem={null}
             firstItem={null}
             lastItem={null}
