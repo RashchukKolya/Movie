@@ -5,6 +5,11 @@ export default function getFilmReducer(state = {}, action) {
       let pages = action.payload.total_pages;
       return { ...state, info: info, pages: pages };
 
+    case "SEARCH_FILM_ACTION":
+      let infoSearch = action.payload.results;
+      let pagesSearch = action.payload.total_pages;
+      return { ...state, info: infoSearch, pages: pagesSearch };
+
     case "SORT_BY_YEAR_UP":
       let a = [...action.payload];
       const sortByYearUp = (a, b) =>
@@ -18,7 +23,6 @@ export default function getFilmReducer(state = {}, action) {
       const sortByYearDown = (a, b) =>
         Number.parseInt(b.release_date) - Number.parseInt(a.release_date);
       let sortedDown = b.sort(sortByYearDown);
-      console.log("sort", sortedDown);
       return { ...state, info: sortedDown };
 
     case "SORT_BY_RATING_UP":

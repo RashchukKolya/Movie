@@ -17,7 +17,6 @@ export class App extends Component {
   state = {
     num: 1,
     input: "",
-    searchLoading: false,
     sortYearFlag: true,
     sortRatingFlag: true
   };
@@ -26,12 +25,14 @@ export class App extends Component {
     this.props.fetchFilm(this.state.num);
   };
 
-  inputFunc = e => {
-     this.setState({
+  inputFunc = async e => {
+    await this.setState({
       input: e.target.value,
-      searchLoading: false,
-      num:1
+      num: 1
     });
+    if(!this.state.input){
+      this.props.fetchFilm(this.state.num);
+    }
   };
 
   clickFunc = async e => {
@@ -49,9 +50,9 @@ export class App extends Component {
   sortByYear = e => {
     e.preventDefault();
     if (this.state.sortYearFlag) {
-      this.props.sortByYearUp(this.state.searchLoading?this.props.search.info :this.props.data.info);
+      this.props.sortByYearUp(this.props.data.info);
     } else {
-      this.props.sortByYearDown(this.state.searchLoading?this.props.search.info :this.props.data.info);
+      this.props.sortByYearDown(this.props.data.info);
     }
     this.setState(prev => ({
       sortYearFlag: !prev.sortYearFlag
@@ -61,20 +62,19 @@ export class App extends Component {
   sortByRating = e => {
     e.preventDefault();
     if (this.state.sortRatingFlag) {
-      this.props.sortByRatingUp(this.state.searchLoading?this.props.search.info :this.props.data.info);
+      this.props.sortByRatingUp(this.props.data.info);
     } else {
-      this.props.sortByRatingDown(this.state.searchLoading?this.props.search.info :this.props.data.info);
+      this.props.sortByRatingDown(this.props.data.info);
     }
     this.setState(prev => ({
       sortRatingFlag: !prev.sortRatingFlag
     }));
   };
 
-  searchFunc =  e => {
+  searchFunc = e => {
     e.preventDefault();
-     this.setState({
-      searchLoading: true,
-      num:1
+    this.setState({
+      num: 1
     });
     this.props.searchFilm(this.state.input, this.state.num);
   };
@@ -88,22 +88,12 @@ export class App extends Component {
           input={this.state.input}
           inputFunc={this.inputFunc}
         />
-        <Main
-          data={
-            this.state.searchLoading
-              ? this.props.search.info
-              : this.props.data.info
-          }
-        />
+        <Main data={this.props.data.info} />
         <div className={style.pagination}>
           <Pagination
             onPageChange={this.clickFunc}
             activePage={+this.state.num}
-            totalPages={
-              this.state.searchLoading
-                ? +this.props.search.pages
-                : +this.props.data.pages
-            }
+            totalPages={+this.props.data.pages}
             ellipsisItem={null}
             firstItem={null}
             lastItem={null}
@@ -123,8 +113,8 @@ export class App extends Component {
 }
 
 const MSTP = state => ({
-  data: state.filmList,
-  search: state.searchFilmList
+  data: state.filmList
+  // search: state.searchFilmList
 });
 
 const MDTP = dispatch => ({
