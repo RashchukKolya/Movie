@@ -1,6 +1,6 @@
 .div_logo {
   display: flex;
-  width: 80%;
+  width: 90%;
   margin: auto;
   padding-top: 1%;
   justify-content: center;
@@ -12,15 +12,18 @@
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
   font-style: italic;
   color: orangered;
 }
 
 .form {
-  width: 80%;
+  width: 90%;
   margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .input,
@@ -30,10 +33,45 @@
   font-size: 1.5rem;
   outline: none;
   border: 2px solid #000;
-  width: 40%;
+  width: 99%;
+}
+
+.input {
+  border-bottom: none;
 }
 
 .btn {
-  border-left: none;
-  width: 20%;
+  width: 33%;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .div_logo {
+    width: 80%;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .form {
+    width: 80%;
+  }
+
+  .input,
+  .btn {
+    width: 40%;
+  }
+  .input {
+    border-bottom: 2px solid black;
+  }
+  .btn {
+    border-left: none;
+    width: 20%;
+  }
 }

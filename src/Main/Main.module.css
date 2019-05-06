@@ -1,7 +1,14 @@
 .main {
-  width: 100%;
+  width: 99%;
+  margin: auto;
   padding-top: 1%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+@media (min-width: 768px) {
+  .main {
+    justify-content: space-around;
+  }
 }

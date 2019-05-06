@@ -99,7 +99,7 @@ export class App extends Component {
             lastItem={null}
             prevItem={null}
             nextItem={null}
-            boundaryRange={2}
+            boundaryRange={1}
           />
         </div>
         <footer className={style.footer}>
