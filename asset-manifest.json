@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/Movie/static/css/main.c9156f8c.chunk.css",
+    "main.js": "/Movie/static/js/main.00843aec.chunk.js",
+    "main.js.map": "/Movie/static/js/main.00843aec.chunk.js.map",
+    "runtime~main.js": "/Movie/static/js/runtime~main.780c54cf.js",
+    "runtime~main.js.map": "/Movie/static/js/runtime~main.780c54cf.js.map",
+    "static/css/2.b0e91209.chunk.css": "/Movie/static/css/2.b0e91209.chunk.css",
+    "static/js/2.e67fb530.chunk.js": "/Movie/static/js/2.e67fb530.chunk.js",
+    "static/js/2.e67fb530.chunk.js.map": "/Movie/static/js/2.e67fb530.chunk.js.map",
+    "index.html": "/Movie/index.html",
+    "precache-manifest.019802679e277a168c34db63ba47c47e.js": "/Movie/precache-manifest.019802679e277a168c34db63ba47c47e.js",
+    "service-worker.js": "/Movie/service-worker.js",
+    "static/css/2.b0e91209.chunk.css.map": "/Movie/static/css/2.b0e91209.chunk.css.map",
+    "static/css/main.c9156f8c.chunk.css.map": "/Movie/static/css/main.c9156f8c.chunk.css.map",
+    "static/media/semantic.min.css": "/Movie/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/logo.png": "/Movie/static/media/logo.36a7a887.png"
+  }
+}
