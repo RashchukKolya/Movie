@@ -7,7 +7,9 @@ import {
   fetchData,
   searchData,
   sortByYearUp,
-  sortByYearDown
+  sortByYearDown,
+  sortByRatingUp,
+  sortByRatingDown
 } from "./redux/actions/getFilmAction";
 import style from "./App.module.css";
 
@@ -16,7 +18,8 @@ export class App extends Component {
     num: 1,
     input: "",
     searchLoading: false,
-    sortYearFlag: true
+    sortYearFlag: true,
+    sortRatingFlag: true
   };
 
   componentDidMount = () => {
@@ -24,9 +27,10 @@ export class App extends Component {
   };
 
   inputFunc = e => {
-    this.setState({
+     this.setState({
       input: e.target.value,
-      searchLoading: false
+      searchLoading: false,
+      num:1
     });
   };
 
@@ -45,27 +49,40 @@ export class App extends Component {
   sortByYear = e => {
     e.preventDefault();
     if (this.state.sortYearFlag) {
-      this.props.sortByYearUp(this.props.data.info);
+      this.props.sortByYearUp(this.state.searchLoading?this.props.search.info :this.props.data.info);
     } else {
-      this.props.sortByYearDown(this.props.data.info);
+      this.props.sortByYearDown(this.state.searchLoading?this.props.search.info :this.props.data.info);
     }
     this.setState(prev => ({
       sortYearFlag: !prev.sortYearFlag
     }));
   };
 
-  searchFunc = e => {
+  sortByRating = e => {
     e.preventDefault();
-    this.setState({
-      searchLoading: true
+    if (this.state.sortRatingFlag) {
+      this.props.sortByRatingUp(this.state.searchLoading?this.props.search.info :this.props.data.info);
+    } else {
+      this.props.sortByRatingDown(this.state.searchLoading?this.props.search.info :this.props.data.info);
+    }
+    this.setState(prev => ({
+      sortRatingFlag: !prev.sortRatingFlag
+    }));
+  };
+
+  searchFunc =  e => {
+    e.preventDefault();
+     this.setState({
+      searchLoading: true,
+      num:1
     });
     this.props.searchFilm(this.state.input, this.state.num);
   };
   render() {
-    console.log(this.props.data);
     return (
       <React.Fragment>
         <Header
+          sortByRating={this.sortByRating}
           sortByYear={this.sortByYear}
           searchFunc={this.searchFunc}
           input={this.state.input}
@@ -81,7 +98,7 @@ export class App extends Component {
         <div className={style.pagination}>
           <Pagination
             onPageChange={this.clickFunc}
-            defaultActivePage={1}
+            activePage={+this.state.num}
             totalPages={
               this.state.searchLoading
                 ? +this.props.search.pages
@@ -114,7 +131,9 @@ const MDTP = dispatch => ({
   fetchFilm: value => dispatch(fetchData(value)),
   searchFilm: (value, page) => dispatch(searchData(value, page)),
   sortByYearUp: value => dispatch(sortByYearUp(value)),
-  sortByYearDown: value => dispatch(sortByYearDown(value))
+  sortByYearDown: value => dispatch(sortByYearDown(value)),
+  sortByRatingUp: value => dispatch(sortByRatingUp(value)),
+  sortByRatingDown: value => dispatch(sortByRatingDown(value))
 });
 
 export default connect(
