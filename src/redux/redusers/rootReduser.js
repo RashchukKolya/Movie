@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
 import getFilmReducer from "./getFilmReducer";
-// import searchFilmReducer from './searchFilmReducer';
 
 const rootReducer = combineReducers({
-  filmList: getFilmReducer,
-  // searchFilmList: searchFilmReducer
+  filmList: getFilmReducer
 });
 
 export default rootReducer;

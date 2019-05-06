@@ -3,7 +3,6 @@ import Card from "../Card/Card";
 import style from "./Main.module.css";
 
 const Main = ({ data }) => {
-  // console.log(data);
   return (
     <div className={style.main}>
       {!data ? (

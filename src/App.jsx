@@ -30,7 +30,7 @@ export class App extends Component {
       input: e.target.value,
       num: 1
     });
-    if(!this.state.input){
+    if (!this.state.input) {
       this.props.fetchFilm(this.state.num);
     }
   };
@@ -114,7 +114,6 @@ export class App extends Component {
 
 const MSTP = state => ({
   data: state.filmList
-  // search: state.searchFilmList
 });
 
 const MDTP = dispatch => ({

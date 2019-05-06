@@ -6,11 +6,9 @@ export const getFilmAction = data => ({
 });
 
 export const fetchData = num => dispatch => {
-  return (
-    getListMovie(num)
-      .then(res => dispatch(getFilmAction(res.data)))
-      .catch(error => console.error(error))
-  );
+  return getListMovie(num)
+    .then(res => dispatch(getFilmAction(res.data)))
+    .catch(error => console.error(error));
 };
 
 export const searchFilmAction = data => ({
@@ -19,11 +17,9 @@ export const searchFilmAction = data => ({
 });
 
 export const searchData = (input, num) => dispatch => {
-  return (
-    getSearchMovie(input, num)
-      .then(res => dispatch(searchFilmAction(res.data)))
-      .catch(error => console.error(error))
-  );
+  return getSearchMovie(input, num)
+    .then(res => dispatch(searchFilmAction(res.data)))
+    .catch(error => console.error(error));
 };
 
 export const sortByYearUp = data => ({
